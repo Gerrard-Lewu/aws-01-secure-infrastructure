@@ -9,6 +9,7 @@ try {
     terraform fmt -check -recursive
     terraform init -backend=false
     terraform validate
+    terraform test
 }
 finally {
     Pop-Location
