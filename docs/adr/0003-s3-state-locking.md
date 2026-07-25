@@ -12,8 +12,9 @@ cannot safely support shared automation.
 ## Rationale
 
 S3 provides durable state storage. Versioning supports recovery from accidental
-state changes; encryption and blocked public access protect the state; lock
-files prevent concurrent Terraform operations.
+state changes; noncurrent versions remain recoverable for 90 days; encryption
+and blocked public access protect the state; lock files prevent concurrent
+Terraform operations.
 
 ## Consequences
 

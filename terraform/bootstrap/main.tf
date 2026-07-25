@@ -44,3 +44,16 @@ resource "aws_s3_bucket_ownership_controls" "terraform_state" {
     object_ownership = "BucketOwnerEnforced"
   }
 }
+
+resource "aws_s3_bucket_lifecycle_configuration" "terraform_state" {
+  bucket = aws_s3_bucket.terraform_state.id
+
+  rule {
+    id     = "expire-noncurrent-state-versions"
+    status = "Enabled"
+
+    noncurrent_version_expiration {
+      noncurrent_days = 90
+    }
+  }
+}

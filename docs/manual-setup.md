@@ -41,10 +41,10 @@ local state. The resulting state file remains local and is ignored by Git.
 ```powershell
 Set-Location terraform/bootstrap
 Copy-Item terraform.tfvars.example terraform.tfvars
-# Edit terraform.tfvars and set a globally unique bucket name.
+# The local file is configured for gerrard-lewu-322513863494-tf-state.
 terraform init
 terraform plan
-terraform apply
+# Review the plan and run terraform apply only after approval.
 ```
 
 After apply, copy `terraform/backend.hcl.example` to `terraform/backend.hcl`,
@@ -53,7 +53,7 @@ replace the placeholders, then initialise the main configuration:
 ```powershell
 Set-Location ../..
 Copy-Item terraform/backend.hcl.example terraform/backend.hcl
-# Edit terraform/backend.hcl with the created bucket name and chosen region.
+# The example is prefilled for the approved state bucket and af-south-1.
 Set-Location terraform
 terraform init -backend-config=backend.hcl
 ```
@@ -70,7 +70,6 @@ From the repository root:
 
 - Enable MFA for root and the non-root administrator.
 - Keep AWS credentials out of Git and rotate keys if they are ever exposed.
-- Choose a globally unique Terraform state bucket name.
 - Review `terraform plan` before every apply.
 - Delete test resources when finished. Do not destroy the state bucket until all managed infrastructure has been destroyed and its state is no longer needed.
 
