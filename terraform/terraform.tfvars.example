@@ -1,0 +1,4 @@
+# Copy to terraform.tfvars and choose the AWS region for your deployment.
+aws_region   = "af-south-1"
+environment  = "dev"
+project_name = "aws-01-secure-infrastructure"

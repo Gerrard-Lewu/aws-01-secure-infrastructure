@@ -1,0 +1,6 @@
+# This file contains no credentials. Copy it to terraform.tfvars and replace
+# the bucket name with a globally unique name, for example one containing your
+# initials and account ID.
+aws_region        = "af-south-1"
+state_bucket_name = "replace-with-a-globally-unique-name"
+project_name      = "aws-01-secure-infrastructure"

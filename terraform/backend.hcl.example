@@ -1,0 +1,7 @@
+# Copy this file to backend.hcl after applying terraform/bootstrap.
+# backend.hcl is ignored by Git because it is account-specific.
+bucket       = "replace-with-your-globally-unique-state-bucket"
+key          = "aws-01-secure-infrastructure/dev/terraform.tfstate"
+region       = "replace-with-your-aws-region"
+encrypt      = true
+use_lockfile = true
