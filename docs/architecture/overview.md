@@ -5,7 +5,7 @@
 ```text
 AWS Account
 └── VPC across two Availability Zones
-    ├── Public subnets: controlled egress components
+    ├── Public subnets: Internet Gateway and one NAT Gateway
     ├── Private subnets: Linux EC2 workload, no public IP
     ├── Security groups: least-privilege traffic rules
     ├── IAM instance profile: AWS Systems Manager access
@@ -21,6 +21,9 @@ AWS Account
   internet or maintaining a bastion host.
 - **S3 remote state:** keeps Terraform state durable and separate from an
   engineer's workstation.
+- **Single NAT Gateway:** permits controlled HTTPS egress from private
+  workloads while keeping the initial environment affordable; this is an
+  intentional availability trade-off.
 - **Modular Terraform:** keeps network, identity, compute, and storage concerns
   independently understandable and easier to extend.
 
