@@ -16,6 +16,10 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Local Terraform backend configuration. This may contain account-specific
+# bucket, region, and role details.
+backend.hcl
+
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
 override.tf
