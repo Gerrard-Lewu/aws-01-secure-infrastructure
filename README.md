@@ -17,10 +17,9 @@ creates a documented AWS baseline that can be reproduced through Terraform.
 
 ## Phase 1 status
 
-Phase 1 establishes the repository, Terraform conventions, remote-state
-bootstrap, documentation, and local validation workflow. It deliberately does
-not create the VPC or EC2 workload yet; those are the next implementation
-phase.
+The Terraform implementation now defines the remote-state bootstrap, two-AZ
+network, private EC2 workload, Systems Manager access, and encrypted archive
+storage. AWS plans must be reviewed before any resources are created.
 
 ## Architecture direction
 
@@ -45,6 +44,10 @@ credentials.
 The engineering decisions and their rationale are recorded in
 [docs/adr](docs/adr). The scope boundaries between the three projects are in
 [docs/scope-boundaries.md](docs/scope-boundaries.md).
+
+The exact checks and expected AWS results are in
+[docs/validation.md](docs/validation.md). Production trade-offs are documented
+in [docs/production-considerations.md](docs/production-considerations.md).
 
 ## Evidence and learning record
 
