@@ -46,6 +46,12 @@ The engineering decisions and their rationale are recorded in
 [docs/adr](docs/adr). The scope boundaries between the three projects are in
 [docs/scope-boundaries.md](docs/scope-boundaries.md).
 
+## Evidence and learning record
+
+Deployment screenshots, plan outputs, and validation results belong in
+[docs/evidence](docs/evidence). Design research and implementation notes are
+kept separately so that the final README remains concise and evidence-led.
+
 ## Cost and teardown
 
 The bootstrap S3 bucket has low storage cost, but deployed resources in later
