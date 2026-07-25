@@ -24,6 +24,6 @@ output "workload_instance_id" {
 }
 
 output "archive_bucket_name" {
-  description = "Name of the encrypted archive bucket for future project phases."
+  description = "Name of the deployed encrypted archive bucket for future project phases."
   value       = module.storage.archive_bucket_name
 }

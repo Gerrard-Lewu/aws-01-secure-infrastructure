@@ -1,5 +1,9 @@
 # Manual Setup and Deployment Guide
 
+This guide reproduces the deployed Project 1 foundation in a different AWS
+account. The committed examples contain placeholders; replace every local
+bucket value before running Terraform.
+
 ## 1. Secure AWS access
 
 Use the non-root IAM user you created for initial setup. An administrator
@@ -9,7 +13,7 @@ IAM user.
 
 The group named `admin_sg` is an **IAM group**, not an AWS security group.
 That name is valid, but security groups are separate VPC network-firewall
-resources created later in this project.
+resources created by this project.
 
 For this project, configure either AWS IAM Identity Center or IAM access keys
 for the non-root administrator. Never place access keys in this repository.
@@ -41,19 +45,21 @@ local state. The resulting state file remains local and is ignored by Git.
 ```powershell
 Set-Location terraform/bootstrap
 Copy-Item terraform.tfvars.example terraform.tfvars
-# The local file is configured for gerrard-lewu-322513863494-tf-state.
+# Edit terraform.tfvars and set a globally unique state bucket name for your account.
 terraform init
 terraform plan
 # Review the plan and run terraform apply only after approval.
 ```
 
 After apply, copy `terraform/backend.hcl.example` to `terraform/backend.hcl`,
-replace the placeholders, then initialise the main configuration:
+set its bucket to the state bucket just created, and initialise the main
+configuration:
 
 ```powershell
 Set-Location ../..
 Copy-Item terraform/backend.hcl.example terraform/backend.hcl
-# The example is prefilled for the approved state bucket and af-south-1.
+Copy-Item terraform/terraform.tfvars.example terraform/terraform.tfvars
+# Set your archive bucket name and confirm the region and CIDR values locally.
 Set-Location terraform
 terraform init -backend-config=backend.hcl
 ```
@@ -73,8 +79,9 @@ From the repository root:
 - Review `terraform plan` before every apply.
 - Delete test resources when finished. Do not destroy the state bucket until all managed infrastructure has been destroyed and its state is no longer needed.
 
-## Cost note
+## Cost and budget note
 
-S3 state storage has a small cost. Later phases may add billable services such
-as NAT Gateway and EC2. Use AWS Budgets and billing alerts before deploying
-ongoing resources.
+S3 state storage has a small cost. NAT Gateway and EC2 also create ongoing
+charges. Configure an AWS Budget and billing alert before deploying those
+resources; the Project 1 deployment used this control. See the sanitised
+[budget evidence](evidence/2026-07-25-budget-control.md).
