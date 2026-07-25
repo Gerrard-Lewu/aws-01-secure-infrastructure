@@ -9,7 +9,7 @@ AWS Account
     ├── Private subnets: Linux EC2 workload, no public IP
     ├── Security groups: least-privilege traffic rules
     ├── IAM instance profile: AWS Systems Manager access
-    └── S3: Terraform state, future backup archive, future diagnostic archive
+    └── S3: encrypted Terraform state and archive storage
 ```
 
 ## Why this design
@@ -27,6 +27,6 @@ AWS Account
 - **Modular Terraform:** keeps network, identity, compute, and storage concerns
   independently understandable and easier to extend.
 
-The detailed resource implementation begins in the networking phase. This
-document records the intended architecture so implementation decisions can be
-checked against it.
+This architecture is deployed for the `dev` environment. Project 2 consumes
+the exported VPC, subnet, security-group, instance, and archive-bucket outputs
+for monitoring without redesigning the foundation.

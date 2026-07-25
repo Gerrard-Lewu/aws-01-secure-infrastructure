@@ -20,7 +20,7 @@ difficult recovery.
 - Build a VPC across two Availability Zones with public and private subnets.
 - Run a Linux EC2 workload privately, without a public IP address.
 - Use AWS Systems Manager for managed access instead of public SSH.
-- Store Terraform state and future backup/log archives in private encrypted S3.
+- Store Terraform state and the archive bucket in private encrypted S3.
 - Keep the design parameterised for multiple environments.
 
 ## Scope
@@ -28,7 +28,7 @@ difficult recovery.
 ### In scope
 
 - Terraform configuration, modules, variables, and remote state.
-- VPC, routing, security groups, IAM baseline, EC2, and S3 in later phases.
+- VPC, routing, security groups, IAM baseline, private EC2, and S3 storage.
 - Architecture, deployment, validation, and teardown documentation.
 
 ### Out of scope
@@ -41,15 +41,15 @@ difficult recovery.
 
 - Terraform formatting, validation, and plan complete successfully.
 - The intended environment is reproducible without manual infrastructure configuration.
-- The future EC2 workload has no public IP and no unrestricted inbound SSH rule.
+- The deployed EC2 workload has no public IP and no inbound security-group rule.
 - Terraform state is stored in encrypted, versioned, private S3 storage.
 - A reviewer can follow the repository documentation to deploy, validate, and destroy the environment.
 
 ## Delivery phases
 
-1. **Foundation:** repository, remote state bootstrap, conventions, and documentation.
-2. **Networking:** VPC, subnet, routing, and security-group implementation.
-3. **Compute and storage:** private EC2, Systems Manager role, and archive storage.
-4. **Validation and portfolio evidence:** architecture diagram, test evidence, and production trade-offs.
+1. **Foundation:** repository, remote state bootstrap, conventions, and documentation — complete.
+2. **Networking:** VPC, subnet, routing, and security-group implementation — complete.
+3. **Compute and storage:** private EC2, Systems Manager role, and archive storage — complete.
+4. **Validation and portfolio evidence:** architecture diagram, deployment evidence, and production trade-offs — complete.
 
 See [scope boundaries](scope-boundaries.md) and [architecture overview](architecture/overview.md).
